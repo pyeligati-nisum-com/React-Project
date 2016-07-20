@@ -23,10 +23,22 @@ export default class Home extends React.Component {
 
   render() {
     const containerStyle = {
-      "float": "right"
+      "float": "right",
+      marginTop:"10px"
     };
     const { user, tweets } = this.props;
-    const mappedTweets = tweets.map(tweet => <div><h1>{user.name}</h1><ul>{tweet.text}</ul></div>)
+    const mappedTweets = tweets.map(tweet => <div>
+                                                <div class="col-lg-12">
+                                                  <div class="col-lg-1">
+                                                      <img src="https://c2.staticflickr.com/9/8720/27824918913_57ee196a0e_o.jpg" width="70" height="70" alt="DSC_5965"/>
+                                                  </div>
+                                                  <div class="col-lg-10">
+                                                      <label>{user.name}</label>
+                                                      <p>{tweet.text}</p>
+                                                  </div>
+                                                </div>
+                                                
+                                            </div>)
     console.log(mappedTweets)
     return (
       <div>
