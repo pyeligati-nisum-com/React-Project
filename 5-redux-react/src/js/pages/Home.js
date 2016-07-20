@@ -12,19 +12,12 @@ import { fetchTweets, addTweet, updateTweet, deleteTweet } from "../actions/twee
   };
 })
 export default class Home extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      title: "",
-    };
-  }
-   changeTitle(title) {
-    this.setState({title});
-  }
+
   postTweet() {
-    const title = document.getElementById("Feed").value;
+    this.props.dispatch(fetchUser());
+    const tweet = document.getElementById("Feed").value;
     const id = Math.round(100000*Math.random());
-    this.props.dispatch(addTweet(id,title))
+    this.props.dispatch(addTweet(id,tweet))
    }
 
 
@@ -33,13 +26,13 @@ export default class Home extends React.Component {
       "float": "right"
     };
     const { user, tweets } = this.props;
-    const mappedTweets = tweets.map(tweet => <li>{tweet.text}</li>)
-    console.log("home");
+    const mappedTweets = tweets.map(tweet => <div><h1>{user.name}</h1><ul>{tweet.text}</ul></div>)
+    console.log(mappedTweets)
     return (
       <div>
         <div class="row">
           <div class="col-lg-12">
-            <textarea rows="5" cols="62" id="Feed">What's on your mind?</textarea>
+            <textarea rows="5" cols="62" id="Feed" name="description" defaultValue="What's on your mind?"></textarea>
           </div>
           <div class="col-lg-5">
             <button class="btn btn-default" onClick={this.postTweet.bind(this)} style={containerStyle}>Post Tweet</button>
@@ -47,8 +40,7 @@ export default class Home extends React.Component {
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <h1>{user.name}</h1>
-            <ul>{mappedTweets}</ul>
+            {mappedTweets}
           </div> 
         </div>
       </div>
