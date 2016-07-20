@@ -66,7 +66,7 @@ const store = createStore(reducer, middleware);
 
 store.dispatch({
 	type:"FETCH_USERS",
-	payload:axios.get("http://rest.learncode.acasdsdemy/api/prem/friends")
+	payload:axios.get("http://rest.learncode.academy/api/prem/friends")
 })
 //with out promise
 // store.dispatch((dispatch)=>{
